@@ -104,4 +104,11 @@ describe("Vector2", () => {
         expect(compareFloat(v.x, 1, 0.001)).toBeTruthy();
         expect(compareFloat(v.y, -2, 0.001)).toBeTruthy();
     });
+
+    test("Create vector copy", () => {
+        const v1 = new Vector2(0, 0);
+        const v2 = v1.copy();
+        expect(v1).toEqual(v2);
+        expect(v1).toStrictEqual(v2);
+    });
 });

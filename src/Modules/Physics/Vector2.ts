@@ -68,4 +68,8 @@ export class Vector2 {
     public r270deg(): Vector2 {
         return new Vector2(this.y, -this.x);
     }
+
+    public copy(): Vector2 {
+        return new Vector2(this.x, this.y);
+    }
 }
