@@ -1,0 +1,24 @@
+{
+  "name": "interactivecanvas",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "vitest",
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaspevidor/InteractiveCanvas.git"
+  },
+  "author": "Lucas Pevidor",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/lucaspevidor/InteractiveCanvas/issues"
+  },
+  "homepage": "https://github.com/lucaspevidor/InteractiveCanvas#readme",
+  "devDependencies": {
+    "parcel": "^2.9.3",
+    "vitest": "^0.34.2"
+  }
+}
