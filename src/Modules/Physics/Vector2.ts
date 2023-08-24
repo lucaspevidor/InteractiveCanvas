@@ -37,7 +37,10 @@ export class Vector2 {
     }
 
     public isEqual(other: Vector2): boolean {
-        return this.x === other.x && this.y === other.y;
+        return (
+            Math.abs(this.x - other.x) < 0.001 &&
+            Math.abs(this.y - other.y) < 0.001
+        );
     }
 
     public mag(): number {
