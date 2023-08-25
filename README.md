@@ -1,6 +1,6 @@
 # InteractiveCanvas
 
-This is a project for experimenting with the HTML5 canvas element. The project includes features such as camera translation and zoom, drawing shapes and images, and more.
+This is a project for experimenting with the HTML5 canvas element. The idea is for the project to include features such as camera translation and zoom, drawing shapes and images, and more.
 
 ## Getting Started
 
