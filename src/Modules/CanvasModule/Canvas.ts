@@ -15,4 +15,5 @@ export function GetCanvas(): HTMLCanvasElement {
 export function DefineCanvasHooks(manager: CanvasManager): void {
     window.addEventListener("resize", () => { CanvasManager.RedefineCanvasResolution(manager); });
     window.addEventListener("keydown", (e: KeyboardEvent) => { manager.CanvasInput().KeyHandling(manager, e); });
+    window.addEventListener("keyup", (e: KeyboardEvent) => { manager.CanvasInput().KeyHandling(manager, e); });
 }

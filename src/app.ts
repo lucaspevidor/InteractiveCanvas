@@ -7,12 +7,26 @@ function OnLoad(): void {
     CanvasManager.RedefineCanvasResolution(canvasManager);
 }
 
-function OnFrameUpdate(): void {
+let lastTimestamp = 0;
+function CalculateDeltaTime(timestamp: number): number {
+    const maxDelay = 0.5;
+    let dt = (timestamp - lastTimestamp) / 1000;
+    if (dt > maxDelay) {
+        dt = 0;
+    }
+
+    lastTimestamp = timestamp;
+    return dt;
+}
+
+function OnFrameUpdate(timestamp: number): void {
+    const dt = CalculateDeltaTime(timestamp);
+
     canvasManager.CanvasRenderer().ClearCanvas();
     canvasManager.CanvasRenderer().DrawCircle("yellow", new Vector2(50, 50), 10);
     canvasManager.CanvasRenderer().DrawCircle("red", new Vector2(-50, -50), 10);
 
-    canvasManager.CanvasMovement().UpdateCanvasTranslation();
+    canvasManager.CanvasMovement().UpdateCanvasTranslation(dt);
 
     requestAnimationFrame(OnFrameUpdate);
 }
@@ -22,6 +36,3 @@ const canvasManager = new CanvasManager(canvas);
 
 OnLoad();
 requestAnimationFrame(OnFrameUpdate);
-
-// canvasManager.CanvasInput().KeyHandling(new KeyboardEvent("keydown", { key: "a" }));
-canvasManager.CanvasMovement().TranslateCanvas(new Vector2(100, 100));
