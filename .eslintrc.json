@@ -15,6 +15,7 @@
         "eol-last": ["error", "always"],
         "no-trailing-spaces": "error",
         "@typescript-eslint/quotes": [2, "double"],
-        "@typescript-eslint/space-before-function-paren": [2, "never"]
+        "@typescript-eslint/space-before-function-paren": [2, "never"],
+        "@typescript-eslint/prefer-readonly": "off"
     }
 }
