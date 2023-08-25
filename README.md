@@ -9,15 +9,14 @@ To get started with the project, you'll need to have Node.js and npm installed o
 Once you have Node.js installed, you can clone the repository and install the dependencies using the following commands:
 
 1. Clone the repository:
-
 ```bash
 git clone https://github.com/lucaspevidor/InteractiveCanvas.git
 ```
-1. Navigate to the project directory:
+2. Navigate to the project directory:
 ```bash
 cd InteractiveCanvas
 ```
-1. Install the dependencies:
+3. Install the dependencies:
 ```bash
 npm install
 ```
