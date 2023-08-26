@@ -4,12 +4,36 @@ export class Vector2 {
         public y: number
     ) {};
 
-    public add(other: Vector2): Vector2 {
-        return new Vector2(this.x + other.x, this.y + other.y);
+    public static unit(): Vector2 {
+        return new Vector2(1, 0);
     }
 
-    public subtract(other: Vector2): Vector2 {
-        return new Vector2(this.x - other.x, this.y - other.y);
+    public static zero(): Vector2 {
+        return new Vector2(0, 0);
+    }
+
+    public add(other: Vector2): Vector2;
+    public add(x: number, y: number): Vector2;
+    public add(arg1: Vector2 | number, arg2?: number): Vector2 {
+        if (arg1 instanceof Vector2) {
+            return new Vector2(this.x + arg1.x, this.y + arg1.y);
+        } else if (typeof arg1 === "number" && typeof arg2 === "number") {
+            return new Vector2(this.x + arg1, this.y + arg2);
+        } else {
+            throw new Error("Invalid arguments");
+        }
+    }
+
+    public subtract(other: Vector2): Vector2;
+    public subtract(x: number, y: number): Vector2;
+    public subtract(a1: Vector2 | number, a2?: number): Vector2 {
+        if (a1 instanceof Vector2) {
+            return new Vector2(this.x - a1.x, this.y - a1.y);
+        } else if (typeof a1 === "number" && typeof a2 === "number") {
+            return new Vector2(this.x - a1, this.y - a2);
+        } else {
+            throw new Error("Invalid arguments");
+        }
     }
 
     public multiply(other: Vector2): Vector2 {
