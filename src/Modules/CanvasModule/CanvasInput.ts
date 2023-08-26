@@ -15,19 +15,21 @@ export class CanvasInput {
 
     KeyHandling(cM: CanvasManager, e: KeyboardEvent): void {
         const forceIntensity = 60;
+        const shiftMultiplier = 3;
+
         let f = new Vector2(0, 0);
 
         if (e.type === "keydown") {
-            if (e.key === "a") { this.keyPressed.a = true; }
-            if (e.key === "s") { this.keyPressed.s = true; }
-            if (e.key === "d") { this.keyPressed.d = true; }
-            if (e.key === "w") { this.keyPressed.w = true; }
+            if (e.key === "a" || e.key === "A") { this.keyPressed.a = true; }
+            if (e.key === "s" || e.key === "S") { this.keyPressed.s = true; }
+            if (e.key === "d" || e.key === "D") { this.keyPressed.d = true; }
+            if (e.key === "w" || e.key === "W") { this.keyPressed.w = true; }
         }
         if (e.type === "keyup") {
-            if (e.key === "a") { this.keyPressed.a = false; }
-            if (e.key === "s") { this.keyPressed.s = false; }
-            if (e.key === "d") { this.keyPressed.d = false; }
-            if (e.key === "w") { this.keyPressed.w = false; }
+            if (e.key === "a" || e.key === "A") { this.keyPressed.a = false; }
+            if (e.key === "s" || e.key === "S") { this.keyPressed.s = false; }
+            if (e.key === "d" || e.key === "D") { this.keyPressed.d = false; }
+            if (e.key === "w" || e.key === "W") { this.keyPressed.w = false; }
         }
 
         if (this.keyPressed.a) {
@@ -42,6 +44,10 @@ export class CanvasInput {
         if (this.keyPressed.w) {
             f = f.add(new Vector2(0, 1));
         }
+        if (e.shiftKey) {
+            f = f.scale(shiftMultiplier);
+        }
+
         cM.CanvasMovement().TranslateCanvas(f.scale(forceIntensity));
     }
 }
