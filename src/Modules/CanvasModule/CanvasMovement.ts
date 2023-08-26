@@ -26,4 +26,10 @@ export class CanvasMovement {
         this._rb.RemoveForces();
         this._rb.ApplyForce(translation);
     }
+
+    ForceCanvasTranslate(translation: Vector2): void {
+        this._c.translate(translation.x, translation.y);
+        this._rb.position.x = this._c.getTransform().e;
+        this._rb.position.y = this._c.getTransform().f;
+    }
 }
