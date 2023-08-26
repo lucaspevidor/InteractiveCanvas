@@ -28,7 +28,6 @@ export class CanvasMovement {
     UpdateCanvasTranslation(deltaTime: number): void {
         this._rb.Update(deltaTime);
         this._c.translate(this._rb.velocity.x, this._rb.velocity.y);
-        // console.log(this._c.getTransform());
     }
 
     TranslateCanvas(translation: Vector2): void {
