@@ -19,4 +19,5 @@ export function DefineCanvasHooks(manager: CanvasManager): void {
     GetCanvas().addEventListener("mousedown", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
     GetCanvas().addEventListener("mouseup", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
     GetCanvas().addEventListener("mousemove", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
+    GetCanvas().addEventListener("wheel", (e: WheelEvent) => { manager.CanvasInput().MouseScrollHandling(manager, e); });
 }
