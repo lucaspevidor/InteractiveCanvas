@@ -24,6 +24,7 @@ function OnFrameUpdate(timestamp: number): void {
 
     canvasManager.CanvasRenderer().ClearCanvas();
     canvasManager.CanvasMovement().UpdateCanvasTranslation(dt);
+    canvasManager.CanvasMovement().UpdateCanvasScale(dt);
     canvasManager.CanvasRenderer().DrawGrid();
     canvasManager.CanvasRenderer().DrawCircle("yellow", new Vector2(50, 50), 10);
     canvasManager.CanvasRenderer().DrawCircle("red", new Vector2(-50, -50), 10);

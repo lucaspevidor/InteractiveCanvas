@@ -44,7 +44,7 @@ export class CanvasRenderer {
 
     ClearCanvas(): void {
         const matrix = this.c.getTransform();
-        this.c.clearRect(-matrix.e, -matrix.f, this.c.canvas.width, this.c.canvas.height);
+        this.c.clearRect(-matrix.e / matrix.a, -matrix.f / matrix.a, this.c.canvas.width / matrix.a, this.c.canvas.height / matrix.a);
     }
 
     DrawCircle(color: string, position: Vector2, radius: number): void {
@@ -85,9 +85,8 @@ export class CanvasRenderer {
             params === undefined ? this.gridProperites : { ...this.gridProperites, ...params };
 
         const tMatrix = this.c.getTransform();
-        const topLeft = new Vector2(-tMatrix.e, -tMatrix.f);
-
-        const bottomRight = topLeft.add(new Vector2(this.c.canvas.width, this.c.canvas.height));
+        const topLeft = new Vector2(-tMatrix.e, -tMatrix.f).scale(1 / tMatrix.a);
+        const bottomRight = new Vector2(-tMatrix.e, -tMatrix.f).add(new Vector2(this.c.canvas.width, this.c.canvas.height)).scale(1 / tMatrix.a);
 
         const sxLineStart = Math.floor((topLeft.x / unitSize) - 1) * unitSize + offset.x % unitSize;
         const pxLineStart = Math.floor((topLeft.x / (unitSize * 10)) - 1) * unitSize * 10 + offset.x % unitSize;
