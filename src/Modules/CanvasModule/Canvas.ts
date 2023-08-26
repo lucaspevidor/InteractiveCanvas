@@ -16,4 +16,7 @@ export function DefineCanvasHooks(manager: CanvasManager): void {
     window.addEventListener("resize", () => { CanvasManager.RedefineCanvasResolution(manager); });
     window.addEventListener("keydown", (e: KeyboardEvent) => { manager.CanvasInput().KeyHandling(manager, e); });
     window.addEventListener("keyup", (e: KeyboardEvent) => { manager.CanvasInput().KeyHandling(manager, e); });
+    GetCanvas().addEventListener("mousedown", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
+    GetCanvas().addEventListener("mouseup", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
+    GetCanvas().addEventListener("mousemove", (e: MouseEvent) => { manager.CanvasInput().MouseButtonHandling(manager, e); });
 }
