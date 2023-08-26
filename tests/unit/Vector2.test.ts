@@ -10,6 +10,23 @@ describe("Vector2", () => {
         expect(new Vector2(0, 0)).toBeInstanceOf(Vector2);
     });
 
+    test("Create unit vector", () => {
+        expect(Vector2.unit().x).toEqual(1);
+        expect(Vector2.unit().y).toEqual(0);
+    });
+
+    test("Create zero vector", () => {
+        expect(Vector2.zero().x).toEqual(0);
+        expect(Vector2.zero().y).toEqual(0);
+
+        const v = Vector2.zero();
+        const v1 = Vector2.zero();
+        v.x = 3;
+
+        expect(v.x).toEqual(3);
+        expect(v1.x).toEqual(0);
+    });
+
     test("Modify vector", () => {
         const v2 = new Vector2(0, 0);
         v2.x = 1;
@@ -47,6 +64,13 @@ describe("Vector2", () => {
         expect(res.y).toEqual(6);
     });
 
+    test("Add vector to coordinates", () => {
+        const v1 = new Vector2(1, 2);
+        const v2 = v1.add(3, 4);
+        expect(v2.x).toEqual(4);
+        expect(v2.y).toEqual(6);
+    });
+
     test("Subtract two vectors", () => {
         const v1 = new Vector2(1, 2);
         const v2 = new Vector2(3, 4);
@@ -54,6 +78,13 @@ describe("Vector2", () => {
 
         expect(res.x).toEqual(-2);
         expect(res.y).toEqual(-2);
+    });
+
+    test("Subtract vector to coordinates", () => {
+        const v1 = new Vector2(1, 2);
+        const v2 = v1.subtract(3, 4);
+        expect(v2.x).toEqual(-2);
+        expect(v2.y).toEqual(-2);
     });
 
     test("Multiply two vectors", () => {
