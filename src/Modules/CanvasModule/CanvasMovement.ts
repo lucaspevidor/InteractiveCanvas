@@ -11,7 +11,7 @@ export class CanvasMovement {
     ) {
         this._rb.mass = 1.5;
         this._rb.dragCoefficient = 10;
-        this._rb.maxVelocity = 10;
+        this._rb.maxVelocity = 30;
         this._rb.stopVelocity = 0.1;
 
         this._c = cM.CanvasContext();
