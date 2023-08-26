@@ -9,6 +9,12 @@ export class CanvasInput {
         w: false
     };
 
+    private mouseBtnPressed: Record<number, boolean> = {
+        0: false,
+        1: false,
+        2: false
+    };
+
     constructor(
         private readonly cM: CanvasManager
     ) {}
@@ -49,5 +55,24 @@ export class CanvasInput {
         }
 
         cM.CanvasMovement().TranslateCanvas(f.scale(forceIntensity));
+    }
+
+    MouseButtonHandling(cM: CanvasManager, e: MouseEvent): void {
+        if (e.type === "mousedown") {
+            if (e.button === 0) { this.mouseBtnPressed[0] = true; }
+            if (e.button === 1) { this.mouseBtnPressed[1] = true; }
+            if (e.button === 2) { this.mouseBtnPressed[2] = true; }
+        }
+
+        if (e.type === "mouseup") {
+            if (e.button === 0) { this.mouseBtnPressed[0] = false; }
+            if (e.button === 1) { this.mouseBtnPressed[1] = false; }
+            if (e.button === 2) { this.mouseBtnPressed[2] = false; }
+        }
+
+        // Drag event
+        if (e.type === "mousemove" && this.mouseBtnPressed[0]) {
+            cM.CanvasMovement().ForceCanvasTranslate(new Vector2(e.movementX, e.movementY));
+        }
     }
 }
