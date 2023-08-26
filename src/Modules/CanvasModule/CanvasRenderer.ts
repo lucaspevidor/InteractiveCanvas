@@ -85,9 +85,8 @@ export class CanvasRenderer {
             params === undefined ? this.gridProperites : { ...this.gridProperites, ...params };
 
         const tMatrix = this.c.getTransform();
-        const topLeft = new Vector2(-tMatrix.e, -tMatrix.f);
-
-        const bottomRight = topLeft.add(new Vector2(this.c.canvas.width, this.c.canvas.height));
+        const topLeft = new Vector2(-tMatrix.e, -tMatrix.f).scale(1 / tMatrix.a);
+        const bottomRight = new Vector2(-tMatrix.e, -tMatrix.f).add(new Vector2(this.c.canvas.width, this.c.canvas.height)).scale(1 / tMatrix.a);
 
         const sxLineStart = Math.floor((topLeft.x / unitSize) - 1) * unitSize + offset.x % unitSize;
         const pxLineStart = Math.floor((topLeft.x / (unitSize * 10)) - 1) * unitSize * 10 + offset.x % unitSize;

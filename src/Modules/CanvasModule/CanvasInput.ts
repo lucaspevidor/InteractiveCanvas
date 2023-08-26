@@ -91,8 +91,9 @@ export class CanvasInput {
         }
 
         // Drag event
+        const scaleFactor = cM.CanvasMovement().scaleFactor;
         if (e.type === "mousemove" && this.mouseBtnPressed[0]) {
-            cM.CanvasMovement().ForceCanvasTranslate(new Vector2(e.movementX, e.movementY));
+            cM.CanvasMovement().ForceCanvasTranslate(new Vector2(e.movementX / scaleFactor, e.movementY / scaleFactor));
         }
     }
 
