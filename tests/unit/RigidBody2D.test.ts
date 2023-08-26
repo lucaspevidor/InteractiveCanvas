@@ -1,35 +1,55 @@
-import { describe, test, expect } from "vitest";
+import { describe, test, expect, beforeEach } from "vitest";
 import { RigidBody2D } from "../../src/Modules/Physics/RigidBody2D";
 import { Vector2 } from "../../src/Modules/Physics/Vector2";
 
 describe("RigidBody2D", () => {
+    let rb: RigidBody2D;
+
+    beforeEach(() => {
+        rb = new RigidBody2D();
+    });
+
     test("Instantiate RB", () => {
-        const rb = new RigidBody2D();
         expect(rb).toBeInstanceOf(RigidBody2D);
     });
 
     test("RB initial max velocity should be negative", () => {
-        const rb = new RigidBody2D();
         expect(rb.maxVelocity).toBeLessThan(0);
     });
 
     test("RB initial stopVelocity should be negative", () => {
-        const rb = new RigidBody2D();
         expect(rb.stopVelocity).toBeLessThan(0);
     });
 
     test("RB initial drag coeff should be 0", () => {
-        const rb = new RigidBody2D();
         expect(rb.dragCoefficient).toEqual(0);
     });
 
     test("RB initial mass should be positive", () => {
-        const rb = new RigidBody2D();
         expect(rb.mass).toBeGreaterThan(0);
     });
 
+    // Data validation
+    test("RB mass should be greater than 0", () => {
+        expect(() => { rb.mass = 0; }).toThrowError("Mass must be greater than 0");
+        expect(() => { rb.mass = -1; }).toThrowError("Mass must be greater than 0");
+    });
+
+    test("RB drag coeff should be greater than or equal to 0", () => {
+        expect(() => { rb.dragCoefficient = -1; })
+            .toThrowError("Drag coefficient must be greater than or equal to 0");
+    });
+
+    test("Removing invalid force from RB should return false", () => {
+        expect(rb.RemoveForce(0)).toBeFalsy();
+    });
+
+    test("Removing valid force from RB should return true", () => {
+        const id = rb.ApplyForce(new Vector2(0, 0));
+        expect(rb.RemoveForce(id)).toBeTruthy();
+    });
+
     test("Falling RB without drag", () => {
-        const rb = new RigidBody2D();
         rb.ApplyForce(new Vector2(0, -10));
         rb.Update(1);
 
@@ -42,7 +62,6 @@ describe("RigidBody2D", () => {
     });
 
     test("Apply multiple forces to RB then remove forces", () => {
-        const rb = new RigidBody2D();
         rb.ApplyForce(new Vector2(0, 10));
         rb.ApplyForce(new Vector2(10, 0));
 
@@ -67,7 +86,6 @@ describe("RigidBody2D", () => {
     });
 
     test("RB thrown at 45 deg. without drag", () => {
-        const rb = new RigidBody2D();
         rb.ApplyForce(new Vector2(0, -10));
         rb.velocity = new Vector2(10, 10);
 
@@ -87,7 +105,6 @@ describe("RigidBody2D", () => {
     });
 
     test("RB with maxV set to 10 should not exceed 10", () => {
-        const rb = new RigidBody2D();
         rb.maxVelocity = 10;
         rb.ApplyForce(new Vector2(0, -10));
 
@@ -98,7 +115,6 @@ describe("RigidBody2D", () => {
     });
 
     test("RB with maxV set to 10 and drag=0.5 should not exceed 10", () => {
-        const rb = new RigidBody2D();
         rb.maxVelocity = 10;
         rb.dragCoefficient = 0.5;
         rb.ApplyForce(new Vector2(0, -10));
@@ -110,7 +126,6 @@ describe("RigidBody2D", () => {
     });
 
     test("RB with stopV set to 0.01 and drag=3 should stop", () => {
-        const rb = new RigidBody2D();
         rb.stopVelocity = 0.01;
         rb.dragCoefficient = 3;
         rb.velocity = new Vector2(10, 0);
