@@ -44,7 +44,7 @@ export class CanvasRenderer {
 
     ClearCanvas(): void {
         const matrix = this.c.getTransform();
-        this.c.clearRect(-matrix.e, -matrix.f, this.c.canvas.width, this.c.canvas.height);
+        this.c.clearRect(-matrix.e / matrix.a, -matrix.f / matrix.a, this.c.canvas.width / matrix.a, this.c.canvas.height / matrix.a);
     }
 
     DrawCircle(color: string, position: Vector2, radius: number): void {
