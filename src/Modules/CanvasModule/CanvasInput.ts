@@ -22,8 +22,8 @@ export class CanvasInput {
     ) {}
 
     KeyHandling(cM: CanvasManager, e: KeyboardEvent): void {
-        const forceIntensity = 60;
-        const scaleIntensity = 0.2;
+        const forceIntensity = 5000;
+        const scaleIntensity = 100;
         const shiftMultiplier = 3;
 
         let f = new Vector2(0, 0);
@@ -99,7 +99,7 @@ export class CanvasInput {
 
     MouseScrollHandling(cM: CanvasManager, e: WheelEvent): void {
         e.preventDefault();
-        const scaleIntensity = 0.02;
+        const scaleIntensity = 2 * cM.CanvasMovement().scaleFactor ** 1.5;
 
         cM.CanvasMovement().ScaleCanvas(scaleIntensity * e.deltaY);
     }
