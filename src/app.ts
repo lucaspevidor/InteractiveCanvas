@@ -28,6 +28,7 @@ function OnFrameUpdate(timestamp: number): void {
     canvasManager.CanvasRenderer().DrawGrid();
     canvasManager.CanvasRenderer().DrawCircle("yellow", new Vector2(50, 50), 10);
     canvasManager.CanvasRenderer().DrawCircle("red", new Vector2(-50, -50), 10);
+    canvasManager.CanvasRenderer().DrawCircle("lightblue", new Vector2(500, 500), 10);
 
     requestAnimationFrame(OnFrameUpdate);
 }
