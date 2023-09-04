@@ -74,6 +74,13 @@ export class CanvasRenderer {
         this.c.stroke();
     }
 
+    DrawRectangle(color: string, origin: Vector2, size: Vector2): void {
+        this.c.fillStyle = color;
+        this.c.beginPath();
+        this.c.fillRect(origin.x, origin.y, size.x, size.y);
+        this.c.fill();
+    }
+
     DrawText(text: string, position: Vector2, color: string, font: string): void {
         this.c.fillStyle = color;
         this.c.font = `${Math.round(18 / this.c.getTransform().a)}px ` + font;
