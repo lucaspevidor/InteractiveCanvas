@@ -1,11 +1,13 @@
 import { CanvasInput } from "./CanvasInput";
 import { CanvasMovement } from "./CanvasMovement";
+import { CanvasObjectManager } from "./CanvasObjectManager";
 import { CanvasRenderer } from "./CanvasRenderer";
 
 export class CanvasManager {
     private readonly _canvasContext: CanvasRenderingContext2D;
     private readonly _canvasMovement: CanvasMovement;
     private readonly _canvasRenderer: CanvasRenderer;
+    private readonly _canvasObjectManager: CanvasObjectManager;
     private readonly _canvasInput: CanvasInput;
 
     constructor(
@@ -14,6 +16,7 @@ export class CanvasManager {
         this._canvasContext = c.getContext("2d") as CanvasRenderingContext2D;
         this._canvasMovement = new CanvasMovement(this);
         this._canvasRenderer = new CanvasRenderer(this);
+        this._canvasObjectManager = new CanvasObjectManager(this);
         this._canvasInput = new CanvasInput(this);
     }
 
@@ -27,6 +30,10 @@ export class CanvasManager {
 
     CanvasRenderer(): CanvasRenderer {
         return this._canvasRenderer;
+    }
+
+    CanvasObjectManager(): CanvasObjectManager {
+        return this._canvasObjectManager;
     }
 
     CanvasInput(): CanvasInput {
