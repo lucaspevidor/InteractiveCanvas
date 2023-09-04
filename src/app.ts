@@ -26,15 +26,17 @@ function OnFrameUpdate(timestamp: number): void {
     canvasManager.CanvasMovement().UpdateCanvasTranslation(dt);
     canvasManager.CanvasMovement().UpdateCanvasScale(dt);
     canvasManager.CanvasRenderer().DrawGrid();
-    canvasManager.CanvasRenderer().DrawCircle("yellow", new Vector2(50, 50), 10);
-    canvasManager.CanvasRenderer().DrawCircle("red", new Vector2(-50, -50), 10);
-    canvasManager.CanvasRenderer().DrawCircle("lightblue", new Vector2(500, 500), 10);
+    canvasManager.CanvasObjectManager().RenderObjects();
 
     requestAnimationFrame(OnFrameUpdate);
 }
 
 const canvas = GetCanvas();
 const canvasManager = new CanvasManager(canvas);
+
+canvasManager.CanvasObjectManager().AddCircle("yellow", new Vector2(50, 50), 10);
+canvasManager.CanvasObjectManager().AddCircle("red", new Vector2(-50, -50), 10);
+canvasManager.CanvasObjectManager().AddCircle("lightblue", new Vector2(500, 500), 10);
 
 OnLoad();
 requestAnimationFrame(OnFrameUpdate);
